@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://liguoxia.github.io/</id>
     <title>Gridea</title>
-    <updated>2019-06-03T03:47:55.098Z</updated>
+    <updated>2019-06-03T03:55:30.155Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://liguoxia.github.io/"/>
     <link rel="self" href="https://liguoxia.github.io//atom.xml"/>
@@ -10,6 +10,84 @@
     <logo>https://liguoxia.github.io//images/avatar.png</logo>
     <icon>https://liguoxia.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[待办任务]]></title>
+        <id>https://liguoxia.github.io//post/waittask1</id>
+        <link href="https://liguoxia.github.io//post/waittask1">
+        </link>
+        <updated>2019-06-03T03:52:45.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="2019-05">2019-05</h3>
+<pre><code>五月总览
+境外网银自动付款
+跨境资金调拨
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>待办事项</th>
+<th>deadline</th>
+<th>时间安排</th>
+<th>完成进度 %</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SEPA</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>移动端OA</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>bug</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="2019-06">2019-06</h3>
+<pre><code>境内网银付款bug
+境内自动付款bug
+境外网银预约转账
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>待办事项</th>
+<th>deadline</th>
+<th>时间安排</th>
+<th>完成进度 %</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Java代码规范]]></title>
         <id>https://liguoxia.github.io//post/javaspecification</id>
