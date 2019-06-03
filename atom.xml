@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://liguoxia.github.io/</id>
-    <title>Gridea</title>
-    <updated>2019-06-03T07:04:20.992Z</updated>
+    <title>夏利国的个人博客</title>
+    <updated>2019-06-03T07:05:28.460Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://liguoxia.github.io/"/>
     <link rel="self" href="https://liguoxia.github.io//atom.xml"/>
     <subtitle>温故而知新</subtitle>
     <logo>https://liguoxia.github.io//images/avatar.png</logo>
     <icon>https://liguoxia.github.io//favicon.ico</icon>
-    <rights>All rights reserved 2019, Gridea</rights>
+    <rights>All rights reserved 2019, 夏利国的个人博客</rights>
     <entry>
         <title type="html"><![CDATA[待办任务]]></title>
         <id>https://liguoxia.github.io//post/waittask1</id>
