@@ -1,22 +1,90 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://liguoxia.github.io/</id>
-    <title>Gridea</title>
-    <updated>2019-06-03T03:47:36.935Z</updated>
-    <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://liguoxia.github.io/"/>
-    <link rel="self" href="https://liguoxia.github.io//atom.xml"/>
-    <subtitle>温故而知新</subtitle>
-    <logo>https://liguoxia.github.io//images/avatar.png</logo>
-    <icon>https://liguoxia.github.io//favicon.ico</icon>
-    <rights>All rights reserved 2019, Gridea</rights>
-    <entry>
-        <title type="html"><![CDATA[Java代码规范]]></title>
-        <id>https://liguoxia.github.io//post/javaspecification</id>
-        <link href="https://liguoxia.github.io//post/javaspecification">
-        </link>
-        <updated>2019-06-03T03:46:55.000Z</updated>
-        <content type="html"><![CDATA[<h4 id="注释">注释</h4>
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Java代码规范 | Gridea</title>
+<link rel="shortcut icon" href="https://liguoxia.github.io//favicon.ico?v=1559533654829">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://liguoxia.github.io//styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://liguoxia.github.io/">
+  <img class="avatar" src="https://liguoxia.github.io//images/avatar.png?v=1559533654829" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Java代码规范
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-06-03 ·
+              </time>
+              
+            </div>
+            
+            <div class="post-content">
+              <h4 id="注释">注释</h4>
 <pre><code class="language-java">@author 作者
 @version 版本号
 @param 参数名 描述   方法的入参名及描述信息，如入参有特别要求，可在此注释。
@@ -409,91 +477,34 @@ logger.debug(&quot;业务流水: {} 错误信息 : {} &quot;, serseqno, errmsg);
 <p>纯的传统意义的 java 对象。就是说在一些 Object/Relation Mapping 工具中，能够做到维护数据库表记录的 persisent object 完全是一个符合 Java Bean 规范的纯 Java 对象，没有增加别的属性和方法。我的理解就是最基本的 Java Bean ，只有属性字段及 setter 和 getter 方法！。</p>
 <h5 id="daodata-access-object-数据访问对象">DAO(data access object) 数据访问对象</h5>
 <p>是一个 sun 的一个标准 j2ee 设计模式， 这个模式中有个接口就是 DAO ，它负持久层的操作。为业务层提供接口。此对象用于访问数据库。通常和 PO 结合使用， DAO 中包含了各种数据库的操作方法。通过它的方法 , 结合 PO 对数据库进行相关的操作。夹在业务逻辑与数据库资源中间。配合 VO, 提供数据库的 CRUD 操作</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Git使用规范]]></title>
-        <id>https://liguoxia.github.io//post/gitspecification</id>
-        <link href="https://liguoxia.github.io//post/gitspecification">
-        </link>
-        <updated>2019-06-03T03:45:54.000Z</updated>
-        <content type="html"><![CDATA[<h4 id="分支命名">分支命名</h4>
-<ul>
-<li>master（主分支，永远是可用的、稳定的、可直接发布的版本，不能直接在该分支上开发）</li>
-<li>develop（开发主分支，代码永远是最新，所有新功能以这个分支来创建自己的开发分支，该分支只做只合并操作，不能直接在该分支上开发）</li>
-<li>feature-xxx（功能开发分支，在develop上创建分支，以自己开发功能模块命名，功能测试正常后合并到develop分支）</li>
-<li>release(预分布分支，在合并好feature分支的develop分支上创建，主要是用来测试bug的分支，修改好bug并确定稳定之后合并到develop和master分支，然后发布master分支)</li>
-<li>release-fix(功能bug修复分支，在release上创建分支修复，修复好测试出来的bug之后合并回release分支。)</li>
-<li>hotfix-xxx（紧急bug修改分支，项目上线之后可以会遇到一些环境问题需要紧急修复，在master分支上创建，流程跟release分支相似，修复完成后合并到develop和master分支）</li>
-</ul>
-<p>注意事项：</p>
-<p>一个分支尽量开发一个功能模块，不要多个功能模块在一个分支上开发。
-开发过程中，如果组员A开发的功能依赖组员B正在开发的功能，可以待组员B开发好相关功能之后，组员A直接pull组员B的分支下来开发，不需要先将组员B的分支 merge 到develop分支。
-feature 分支在申请合并之前，<strong>最好是先 pull 一下 develop 主分支下来</strong>，看一下有没有冲突，如果有就先解决冲突后再申请合并。</p>
-<h4 id="开发一个新功能">开发一个新功能</h4>
-<pre><code class="language-shell"># 创建分支
-git branch feature-节假日处理
 
-# add
-git add filename
+            </div>
+          </article>
+        </div>
 
-# 取消add操作，重新放回工作区
-git reset HEAD filename
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://liguoxia.github.io//post/gitspecification">
+              <h3 class="post-title">
+                Git使用规范
+              </h3>
+            </a>
+          </div>
+        
 
-# commit commit可随意提交
-git commit -m &quot;注释&quot;
+        
 
-# 推到远程分支
-git push --set-upstream origin feature-节假日处理
-</code></pre>
-<h4 id="分支branch操作相关命令">分支(branch)操作相关命令</h4>
-<pre><code class="language-shell"># 查看本地分支
-$ git branch
-# 查看远程分支
-$ git branch -a
-# 创建本地分支,注意新分支创建后不会自动切换为当前分支
-$ git branch [name]
-# 切换分支
-$ git checkout [name]
-# 创建新分支并立即切换到新分支
-$ git checkout -b [name]
-# -d选项只能删除已经参与了合并的分支，对于未有合并的分支是无法删除的。如果想强制删除一个分支，可以使用-D选项
-$ git branch -d [name]
-# 将名称为[name]的分支与当前分支合并
-$ git merge [name]
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://liguoxia.github.io//post/hello-gridea</id>
-        <link href="https://liguoxia.github.io//post/hello-gridea">
-        </link>
-        <updated>2018-12-11T16:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="http://hvenotes.fehey.com/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>𝖶𝗂𝗇𝖽𝗈𝗐𝗌</strong> 或 <strong>𝖬𝖺𝖼𝖮𝖲</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
-]]></content>
-    </entry>
-</feed>
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://liguoxia.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>
