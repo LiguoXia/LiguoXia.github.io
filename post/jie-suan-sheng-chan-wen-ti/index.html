@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>结算生产问题 | 夏利国</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://liguoxia.github.io//favicon.ico?v=1559615392083">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://liguoxia.github.io//styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://liguoxia.github.io/">
+        <img src="https://liguoxia.github.io//images/avatar.png?v=1559615392083" class="site-logo">
+        <h1 class="site-title">夏利国</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="https://liguoxia.github.io//post/waittask1/" class="site-nav">
+            待办
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://liguoxia.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">结算生产问题</h2>
+            <div class="post-date">2019-06-04</div>
+            
+            <div class="post-content">
+              <h4 id="节假日没设置导致一笔t2结汇提前被交割">节假日没设置导致一笔T+2结汇提前被交割</h4>
+<h5 id="描述">描述</h5>
+<p>网银周五提交一笔T+2的结汇，原本应该是下周二交割，由于没有节假日设置，系统判定周日为交割日，业务员周一才看到代办任务，进行手动交割，实际交割日期与系统认定交割日期不一致，导致冲账的时候日期与实际交易信息不对应不能冲账</p>
+<h5 id="解决办法">解决办法</h5>
+<p>1.手动插入数据维护节假日
+2.手动修改外汇登记簿交割日期，改为实际交割日期在进行冲账交易</p>
+<h4 id="会计凭证打印查询经办复核显示反了">会计凭证打印查询，经办复核显示反了</h4>
+<h5 id="描述-2">描述</h5>
+<p>结算系统流程岗位有：经办员，复核员
+核心系统流程岗位：交易柜员，授权柜员
+结算调用核心报文公共模板，把调用核心记账的登录用户作为交易柜员传给核心，导致核心的经办复核和结算的经办复核相反，会计凭证打印查询把交易柜员作为经办，授权柜员作为复核查询，导致来自核心系统自身的记账反了</p>
+<h5 id="解决办法-2">解决办法</h5>
+<p>根据交易码改造查询语句，来自结算的交易反一下，核心自身的交易不变
+修改涉及sql文件KjSeqQryMapper. kjVouQry</p>
+<h4 id="境外资金调拨无法选择账号">境外资金调拨无法选择账号</h4>
+<h5 id="描述-3">描述</h5>
+<h5 id="解决办法-3">解决办法</h5>
+<p>查看下拉框模糊匹配sql，发现bankcode not in 2013，汇丰银行账号结算方式为电汇时才能显示</p>
+<h4 id="回单打印打印不了">回单打印打印不了</h4>
+<h5 id="描述-4">描述</h5>
+<p>业务电脑win10操作系统</p>
+<h5 id="解决办法-4">解决办法</h5>
+<p>win10 装 adobe acrobat reader dc
+其余装svn svn://10.0.17.27/工具软件/AdbeRdr940_zh_CN/AdbeRdr940_zh_CN/AdbeRdr11000_zh_CN.exe</p>
+<h4 id="结算待办任务点不进去">结算待办任务点不进去</h4>
+<h5 id="解决">解决</h5>
+<p>还原IE所有设置</p>
+<h4 id="票据打印报打印错误undefined">票据打印，报打印错误：undefined</h4>
+<h5 id="解决-2">解决</h5>
+<p>查看日志发现，打印时，找不到中国进出口银行进账单ireport模板，导致报错filenotfind，由于业务不需要实际打印，只是需要走完流程点击提交，故先用其他模板改名成需要的文件名，导致不报错，以便继续业务，后续有需求再更改，暂时先放在生产</p>
+<h4 id="票据打印报错">票据打印报错</h4>
+<h5 id="解决办法-5">解决办法</h5>
+<p>新买支票的银行需要添加对应模板，文件名生成根据银行编号，在字典表维护
+select * from MULTILEVELDIC where 1=1 AND upsysid='42098' AND itemid='0102';</p>
+<h4 id="电子收款应该自动入账但是落地了">电子收款应该自动入账，但是落地了</h4>
+<h5 id="解决办法-6">解决办法</h5>
+<p>电子收款是定时任务执行的，去生产定时任务的服务器查看日志，发现核心记账报文中附言包含特殊字符“&lt; &gt;”，导致报错， The value of attribute &quot;value&quot; associated with an element type &quot;field&quot; must not contain the '&lt;' character.建议业务修改附言后手动记账。</p>
+<h4 id="银企扫回来的外部收款重复记账">银企扫回来的外部收款，重复记账</h4>
+<h5 id="描述-5">描述</h5>
+<p>企业原本归集到8010 外部户的，去银行修改了归集关系，归集到1110的外部户，业务成员单位账户管理把之前的删了，重新维护，导致8010已经如果账的交易，在1110重复入账了</p>
+<h5 id="解决办法-7">解决办法</h5>
+<p>重新维护会导致外部账号ACCID不同，所以扫回相同的明细，能正常插入bedcdetail表，故这种机构变更，不要删除重新维护，直接修改即可</p>
+<h4 id="用户数字签名有问题">用户数字签名有问题</h4>
+<p>企业后管，创建用户，推送到网银
+结算用户使用rdp登录，先去idm验证统一登录，界面都要走企业网银的数字签名</p>
+<h4 id="自动付款报错核心记账结算落地">自动付款报错，核心记账，结算落地</h4>
+<h5 id="描述-6">描述</h5>
+<p>境内自动付款，结算调用核心记账，核心记账处理时间是60秒，但是uap转发小程序超时时间是60s，60s后会断开和结算的连接，没有把tuxedo的结果返回结算，所以核心实际记账成功，但是结算没拿到返回结果，解析返回报文报空指针异常，所以结算把这笔交易落地处理了</p>
+<h4 id="网银预约转账定时任务调用结算失败">网银预约转账定时任务调用结算失败</h4>
+<h5 id="描述-7">描述</h5>
+<p>境外的预约，调用结算接口，参数为数据池DataPool,在从数据库查出结果转成DatePool时，查询结果为空的不会放进数据池(原因待查证)，结算对这个字段取值时候使用了String.value(),导致null对象被转成null字符串，插入数据库的时候报字段超长</p>
+<h4 id="银行账户开立申请结算这边会生成两笔">银行账户开立申请，结算这边会生成两笔</h4>
+<h5 id="描述-8">描述</h5>
+<p><img src="https://raw.githubusercontent.com/LiguoXia/pic/master/scwt-%E9%93%B6%E8%A1%8C%E8%B4%A6%E6%88%B7%E5%BC%80%E7%AB%8B%E7%94%B3%E8%AF%B7bug.png?token=AFJJX2E2SQ4SDGRQMXWRI7C46XLZU" alt=""></p>
+<h5 id="解决办法-8">解决办法</h5>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://liguoxia.github.io//post/waittask1">
+                  <h3 class="post-title">
+                    待办任务
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '051f28e9b8a459549083',
+        clientSecret: '4fecf0c6c87dbb33b55684e86b3e510e32376020',
+        repo: 'LiguoXia.github.io',
+        owner: 'LiguoXia',
+        admin: ['LiguoXia'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
