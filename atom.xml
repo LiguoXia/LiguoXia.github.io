@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://liguoxia.github.io/</id>
     <title>夏利国</title>
-    <updated>2019-06-04T02:30:47.231Z</updated>
+    <updated>2019-06-04T02:40:18.914Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://liguoxia.github.io/"/>
     <link rel="self" href="https://liguoxia.github.io//atom.xml"/>
@@ -69,7 +69,7 @@ select * from MULTILEVELDIC where 1=1 AND upsysid='42098' AND itemid='0102';</p>
 <p>境外的预约，调用结算接口，参数为数据池DataPool,在从数据库查出结果转成DatePool时，查询结果为空的不会放进数据池(原因待查证)，结算对这个字段取值时候使用了String.value(),导致null对象被转成null字符串，插入数据库的时候报字段超长</p>
 <h4 id="银行账户开立申请结算这边会生成两笔">银行账户开立申请，结算这边会生成两笔</h4>
 <h5 id="描述-8">描述</h5>
-<p><img src="https://raw.githubusercontent.com/LiguoXia/pic/master/scwt-%E9%93%B6%E8%A1%8C%E8%B4%A6%E6%88%B7%E5%BC%80%E7%AB%8B%E7%94%B3%E8%AF%B7bug.png?token=AFJJX2E2SQ4SDGRQMXWRI7C46XLZU" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/LiguoXia/pic/master/scwt-yhzhklsq.png" alt=""></p>
 <h5 id="解决办法-8">解决办法</h5>
 ]]></content>
     </entry>
