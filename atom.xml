@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://liguoxia.github.io/</id>
     <title>夏利国</title>
-    <updated>2019-06-05T02:44:37.773Z</updated>
+    <updated>2019-06-05T02:46:07.279Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://liguoxia.github.io/"/>
     <link rel="self" href="https://liguoxia.github.io//atom.xml"/>
@@ -30,7 +30,7 @@ Map</p>
 int
 String</p>
 <h3 id="select">select</h3>
-<pre><code>&lt;!--SEPA批量付款查询 --&gt;
+<pre><code class="language-sql">&lt;!--SEPA批量付款查询 --&gt;
 &lt;select id=&quot;listSepaBatchPayQry&quot; parameterType=&quot;Map&quot; resultType=&quot;Map&quot;&gt;
 		SELECT T1.TRANNO AS TRANNOSEQNO,T1.* FROM B_TS_BATCHPAY T1
 		&lt;where&gt;
