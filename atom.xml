@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://liguoxia.github.io/</id>
     <title>夏利国</title>
-    <updated>2019-06-05T01:40:04.429Z</updated>
+    <updated>2019-06-05T02:38:40.567Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://liguoxia.github.io/"/>
     <link rel="self" href="https://liguoxia.github.io//atom.xml"/>
@@ -10,6 +10,156 @@
     <logo>https://liguoxia.github.io//images/avatar.png</logo>
     <icon>https://liguoxia.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 夏利国</rights>
+    <entry>
+        <title type="html"><![CDATA[Mybatis xml文件规范]]></title>
+        <id>https://liguoxia.github.io//post/mybatis-xml-wen-jian-gui-fan</id>
+        <link href="https://liguoxia.github.io//post/mybatis-xml-wen-jian-gui-fan">
+        </link>
+        <updated>2019-06-05T01:40:19.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="parametertype">parameterType</h3>
+<h4 id="基本数据类型">基本数据类型</h4>
+<p>int
+String
+Long
+Date</p>
+<h4 id="实体类和map">实体类和Map</h4>
+<p>实体类: 包名.类名
+Map</p>
+<h3 id="resulttype">resultType</h3>
+<p>Map
+int
+String</p>
+<h3 id="select">select</h3>
+<p>``</p>
+<!--SEPA批量付款查询 -->
+<select id="listSepaBatchPayQry" parameterType="Map" resultType="Map">
+		SELECT T1.TRANNO AS TRANNOSEQNO,T1.* FROM B_TS_BATCHPAY T1
+		<where>
+				<if test="CUSTACCTNO != null and CUSTACCTNO != ''">AND CUSTACCTNO = #{CUSTACCTNO}</if>
+				<if test="TRANNO != null and TRANNO != ''">AND TRANNO = #{TRANNO}</if>
+				<if test="IMPDPSTART != null and IMPDPSTART != ''">AND IMPDATE &gt;= #{IMPDPSTART}</if>
+				<if test="IMPDPEND != null and IMPDPEND != ''">AND IMPDATE &lt;= #{IMPDPEND}</if>
+				<if test="SORT!=null and SORT !=''">
+						<if test="SORT!=null and SORT =='XUHAO'">
+								ORDER BY TO_NUMBER(${SORT}) ${DIR}
+						</if>
+						<if test="SORT!=null and SORT !='XUHAO'">
+								ORDER BY ${SORT} ${DIR}
+						</if>
+				</if>
+				<if test="SORT ==null or SORT ==''">ORDER BY t1.TRANNO</if>
+		</where>
+</select>
+``
+``
+<!-- SEPA批量付款重复笔数 -->
+    <select id="repeatCount" parameterType="Map" resultType="int">
+        SELECT COUNT(1) AS REPEATCOUNT FROM  B_TS_BATCHPAY T1
+        WHERE
+        T1.BATCHNO != #{BATCHNO}
+        AND T1.SEQNO != #{SEQNO}
+        AND T1.MONEY = #{MONEY}
+        AND T1.CUSTACCTNO = #{CUSTACCTNO}
+        AND T1.CUSTACCTNAME = #{CUSTACCTNAME}
+        AND T1.RECACCTNO = #{RECACCTNO}
+        AND T1.RECACCTNAME = #{RECACCTNAME}
+        AND T1.TRANSTAT IN ('05','09','12','19')
+        AND  FLOOR(TO_NUMBER(TO_DATE(#{SYSDATE},'yyyy-mm-dd')-TO_DATE(TRANDATE,'yyyy-mm-dd'))) <![CDATA[ <= ]]]]><![CDATA[> #{PAYDAYS}
+    </select>
+``
+### delete
+``
+<!-- 根据流水号和序号删除 -->
+<delete id="removeSepaInfo" parameterType="Map">
+	DELETE FROM B_TS_BATCHPAY A WHERE A.TRANNO =#{TRANNO}
+</delete>
+``
+### update
+``
+<!-- SEPA经办提交复核，修改支付表信息 -->
+<update id="updateSepaPay" parameterType="Map">
+		UPDATE
+		B_TS_BATCHPAY
+		<set>
+				<if test="BATCHNO!=null and BATCHNO!='' ">
+						BATCHNO=#{BATCHNO},
+				</if>
+				<if test="JB_OPERID!=null and JB_OPERID!='' ">
+						JB_OPERID=#{JB_OPERID},
+				</if>
+				<if test="SUBDATE!=null and SUBDATE!='' ">
+						SUBDATE=#{SUBDATE},
+				</if>
+				<if test="SUBTIME!=null and SUBTIME!='' ">
+						SUBTIME=#{SUBTIME},
+				</if>
+				<if test="TRANSTAT!=null and TRANSTAT!='' ">
+						TRANSTAT=#{TRANSTAT},
+				</if>
+				<if test="REASON!=null and REASON!='' ">
+						REASON=#{REASON},
+				</if>
+				<if test="FH_OPERID!=null and FH_OPERID!='' ">
+						FH_OPERID=#{FH_OPERID},
+				</if>
+				<if test="FHDATE!=null and FHDATE!='' ">
+						FHDATE=#{FHDATE},
+				</if>
+				<if test="FHTIME!=null and FHTIME!='' ">
+						FHTIME=#{FHTIME},
+				</if>
+		</set>
+		<where>
+				TRANNO=#{TRANNO}
+		</where>
+</update>
+``
+### insert
+#### 直接插入
+``
+<insert id="insertMessage" parameterType="Map">
+	INSERT INTO TSTUDENT(NAME, AGE) VALUES(#{NAME}, #{AGE})
+</insert>
+``
+#### 动态插入
+``
+<insert id="insertMessage" parameterType="com.sf.ccsp.member.client.request.MessageReq">
+ insert into cx_customer_message
+	<trim prefix="(" suffix=")" suffixOverrides="," >
+		ID,MEMBERID,
+		<if test='messageClassify != null and messageClassify != "" '>
+			 MESSAGEE_CLASSIFY,
+		</if>
+		<if test='messageCode != null and messageCode != "" '>
+			 MESSAGE_CODE,
+		</if>
+	 <if test='messageContent != null and messageContent != "" '>
+			 MESSAGE_CONTENT,
+	 </if>
+	</trim>
+<pre><code>&lt;trim prefix=&quot;values (&quot; suffix=&quot;)&quot; suffixOverrides=&quot;,&quot; &gt;
+	#{id, jdbcType=VARCHAR},
+	#{memberId, jdbcType=VARCHAR},
+	&lt;if test='messageClassify != null and messageClassify != &quot;&quot; '&gt;
+		#{messageClassify, jdbcType=VARCHAR},
+	&lt;/if&gt;
+	&lt;if test='messageCode != null and messageCode != &quot;&quot; '&gt;
+		#{messageCode, jdbcType=VARCHAR},
+	&lt;/if&gt;
+	&lt;if test='messageContent != null and messageContent != &quot;&quot; '&gt;
+		#{messageContent, jdbcType=VARCHAR},
+	&lt;/if&gt;
+&lt;/trim&gt;  
+</code></pre>
+</insert>
+trim标签的属性
+<p>prefix：前缀覆盖并增加其内容。也就是给中的sql语句加上前缀；
+suffix：后缀覆盖并增加其内容。给包裹的sql语句加上后缀；
+prefixOverrides：前缀判断的条件。取消指定的前缀，如where；
+suffixOverrides：后缀判断的条件。取消指定的后缀，如and | or.，逗号等。
+``</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[结算生产问题]]></title>
         <id>https://liguoxia.github.io//post/jie-suan-sheng-chan-wen-ti</id>
