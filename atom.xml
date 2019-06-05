@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://liguoxia.github.io/</id>
     <title>夏利国</title>
-    <updated>2019-06-05T02:38:40.567Z</updated>
+    <updated>2019-06-05T02:44:37.773Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://liguoxia.github.io/"/>
     <link rel="self" href="https://liguoxia.github.io//atom.xml"/>
@@ -30,30 +30,28 @@ Map</p>
 int
 String</p>
 <h3 id="select">select</h3>
-<p>``</p>
-<!--SEPA批量付款查询 -->
-<select id="listSepaBatchPayQry" parameterType="Map" resultType="Map">
+<pre><code>&lt;!--SEPA批量付款查询 --&gt;
+&lt;select id=&quot;listSepaBatchPayQry&quot; parameterType=&quot;Map&quot; resultType=&quot;Map&quot;&gt;
 		SELECT T1.TRANNO AS TRANNOSEQNO,T1.* FROM B_TS_BATCHPAY T1
-		<where>
-				<if test="CUSTACCTNO != null and CUSTACCTNO != ''">AND CUSTACCTNO = #{CUSTACCTNO}</if>
-				<if test="TRANNO != null and TRANNO != ''">AND TRANNO = #{TRANNO}</if>
-				<if test="IMPDPSTART != null and IMPDPSTART != ''">AND IMPDATE &gt;= #{IMPDPSTART}</if>
-				<if test="IMPDPEND != null and IMPDPEND != ''">AND IMPDATE &lt;= #{IMPDPEND}</if>
-				<if test="SORT!=null and SORT !=''">
-						<if test="SORT!=null and SORT =='XUHAO'">
+		&lt;where&gt;
+				&lt;if test=&quot;CUSTACCTNO != null and CUSTACCTNO != ''&quot;&gt;AND CUSTACCTNO = #{CUSTACCTNO}&lt;/if&gt;
+				&lt;if test=&quot;TRANNO != null and TRANNO != ''&quot;&gt;AND TRANNO = #{TRANNO}&lt;/if&gt;
+				&lt;if test=&quot;IMPDPSTART != null and IMPDPSTART != ''&quot;&gt;AND IMPDATE &amp;gt;= #{IMPDPSTART}&lt;/if&gt;
+				&lt;if test=&quot;IMPDPEND != null and IMPDPEND != ''&quot;&gt;AND IMPDATE &amp;lt;= #{IMPDPEND}&lt;/if&gt;
+				&lt;if test=&quot;SORT!=null and SORT !=''&quot;&gt;
+						&lt;if test=&quot;SORT!=null and SORT =='XUHAO'&quot;&gt;
 								ORDER BY TO_NUMBER(${SORT}) ${DIR}
-						</if>
-						<if test="SORT!=null and SORT !='XUHAO'">
+						&lt;/if&gt;
+						&lt;if test=&quot;SORT!=null and SORT !='XUHAO'&quot;&gt;
 								ORDER BY ${SORT} ${DIR}
-						</if>
-				</if>
-				<if test="SORT ==null or SORT ==''">ORDER BY t1.TRANNO</if>
-		</where>
-</select>
-``
-``
-<!-- SEPA批量付款重复笔数 -->
-    <select id="repeatCount" parameterType="Map" resultType="int">
+						&lt;/if&gt;
+				&lt;/if&gt;
+				&lt;if test=&quot;SORT ==null or SORT ==''&quot;&gt;ORDER BY t1.TRANNO&lt;/if&gt;
+		&lt;/where&gt;
+&lt;/select&gt;
+</code></pre>
+<pre><code>&lt;!-- SEPA批量付款重复笔数 --&gt;
+    &lt;select id=&quot;repeatCount&quot; parameterType=&quot;Map&quot; resultType=&quot;int&quot;&gt;
         SELECT COUNT(1) AS REPEATCOUNT FROM  B_TS_BATCHPAY T1
         WHERE
         T1.BATCHNO != #{BATCHNO}
@@ -64,100 +62,97 @@ String</p>
         AND T1.RECACCTNO = #{RECACCTNO}
         AND T1.RECACCTNAME = #{RECACCTNAME}
         AND T1.TRANSTAT IN ('05','09','12','19')
-        AND  FLOOR(TO_NUMBER(TO_DATE(#{SYSDATE},'yyyy-mm-dd')-TO_DATE(TRANDATE,'yyyy-mm-dd'))) <![CDATA[ <= ]]]]><![CDATA[> #{PAYDAYS}
-    </select>
-``
-### delete
-``
-<!-- 根据流水号和序号删除 -->
-<delete id="removeSepaInfo" parameterType="Map">
+        AND  FLOOR(TO_NUMBER(TO_DATE(#{SYSDATE},'yyyy-mm-dd')-TO_DATE(TRANDATE,'yyyy-mm-dd'))) &lt;![CDATA[ &lt;= ]]&gt; #{PAYDAYS}
+    &lt;/select&gt;
+</code></pre>
+<h3 id="delete">delete</h3>
+<pre><code>&lt;!-- 根据流水号和序号删除 --&gt;
+&lt;delete id=&quot;removeSepaInfo&quot; parameterType=&quot;Map&quot;&gt;
 	DELETE FROM B_TS_BATCHPAY A WHERE A.TRANNO =#{TRANNO}
-</delete>
-``
-### update
-``
-<!-- SEPA经办提交复核，修改支付表信息 -->
-<update id="updateSepaPay" parameterType="Map">
+&lt;/delete&gt;
+</code></pre>
+<h3 id="update">update</h3>
+<pre><code>&lt;!-- SEPA经办提交复核，修改支付表信息 --&gt;
+&lt;update id=&quot;updateSepaPay&quot; parameterType=&quot;Map&quot;&gt;
 		UPDATE
 		B_TS_BATCHPAY
-		<set>
-				<if test="BATCHNO!=null and BATCHNO!='' ">
+		&lt;set&gt;
+				&lt;if test=&quot;BATCHNO!=null and BATCHNO!='' &quot;&gt;
 						BATCHNO=#{BATCHNO},
-				</if>
-				<if test="JB_OPERID!=null and JB_OPERID!='' ">
+				&lt;/if&gt;
+				&lt;if test=&quot;JB_OPERID!=null and JB_OPERID!='' &quot;&gt;
 						JB_OPERID=#{JB_OPERID},
-				</if>
-				<if test="SUBDATE!=null and SUBDATE!='' ">
+				&lt;/if&gt;
+				&lt;if test=&quot;SUBDATE!=null and SUBDATE!='' &quot;&gt;
 						SUBDATE=#{SUBDATE},
-				</if>
-				<if test="SUBTIME!=null and SUBTIME!='' ">
+				&lt;/if&gt;
+				&lt;if test=&quot;SUBTIME!=null and SUBTIME!='' &quot;&gt;
 						SUBTIME=#{SUBTIME},
-				</if>
-				<if test="TRANSTAT!=null and TRANSTAT!='' ">
+				&lt;/if&gt;
+				&lt;if test=&quot;TRANSTAT!=null and TRANSTAT!='' &quot;&gt;
 						TRANSTAT=#{TRANSTAT},
-				</if>
-				<if test="REASON!=null and REASON!='' ">
+				&lt;/if&gt;
+				&lt;if test=&quot;REASON!=null and REASON!='' &quot;&gt;
 						REASON=#{REASON},
-				</if>
-				<if test="FH_OPERID!=null and FH_OPERID!='' ">
+				&lt;/if&gt;
+				&lt;if test=&quot;FH_OPERID!=null and FH_OPERID!='' &quot;&gt;
 						FH_OPERID=#{FH_OPERID},
-				</if>
-				<if test="FHDATE!=null and FHDATE!='' ">
+				&lt;/if&gt;
+				&lt;if test=&quot;FHDATE!=null and FHDATE!='' &quot;&gt;
 						FHDATE=#{FHDATE},
-				</if>
-				<if test="FHTIME!=null and FHTIME!='' ">
+				&lt;/if&gt;
+				&lt;if test=&quot;FHTIME!=null and FHTIME!='' &quot;&gt;
 						FHTIME=#{FHTIME},
-				</if>
-		</set>
-		<where>
+				&lt;/if&gt;
+		&lt;/set&gt;
+		&lt;where&gt;
 				TRANNO=#{TRANNO}
-		</where>
-</update>
-``
-### insert
-#### 直接插入
-``
-<insert id="insertMessage" parameterType="Map">
-	INSERT INTO TSTUDENT(NAME, AGE) VALUES(#{NAME}, #{AGE})
-</insert>
-``
-#### 动态插入
-``
-<insert id="insertMessage" parameterType="com.sf.ccsp.member.client.request.MessageReq">
- insert into cx_customer_message
-	<trim prefix="(" suffix=")" suffixOverrides="," >
-		ID,MEMBERID,
-		<if test='messageClassify != null and messageClassify != "" '>
-			 MESSAGEE_CLASSIFY,
-		</if>
-		<if test='messageCode != null and messageCode != "" '>
-			 MESSAGE_CODE,
-		</if>
-	 <if test='messageContent != null and messageContent != "" '>
-			 MESSAGE_CONTENT,
-	 </if>
-	</trim>
-<pre><code>&lt;trim prefix=&quot;values (&quot; suffix=&quot;)&quot; suffixOverrides=&quot;,&quot; &gt;
-	#{id, jdbcType=VARCHAR},
-	#{memberId, jdbcType=VARCHAR},
-	&lt;if test='messageClassify != null and messageClassify != &quot;&quot; '&gt;
-		#{messageClassify, jdbcType=VARCHAR},
-	&lt;/if&gt;
-	&lt;if test='messageCode != null and messageCode != &quot;&quot; '&gt;
-		#{messageCode, jdbcType=VARCHAR},
-	&lt;/if&gt;
-	&lt;if test='messageContent != null and messageContent != &quot;&quot; '&gt;
-		#{messageContent, jdbcType=VARCHAR},
-	&lt;/if&gt;
-&lt;/trim&gt;  
+		&lt;/where&gt;
+&lt;/update&gt;
 </code></pre>
-</insert>
+<h3 id="insert">insert</h3>
+<h4 id="直接插入">直接插入</h4>
+<pre><code>&lt;insert id=&quot;insertMessage&quot; parameterType=&quot;Map&quot;&gt;
+	INSERT INTO TSTUDENT(NAME, AGE) VALUES(#{NAME}, #{AGE})
+&lt;/insert&gt;
+</code></pre>
+<h4 id="动态插入">动态插入</h4>
+<pre><code>&lt;insert id=&quot;insertMessage&quot; parameterType=&quot;com.sf.ccsp.member.client.request.MessageReq&quot;&gt;
+ insert into cx_customer_message
+	&lt;trim prefix=&quot;(&quot; suffix=&quot;)&quot; suffixOverrides=&quot;,&quot; &gt;
+		ID,MEMBERID,
+		&lt;if test='messageClassify != null and messageClassify != &quot;&quot; '&gt;
+			 MESSAGEE_CLASSIFY,
+		&lt;/if&gt;
+		&lt;if test='messageCode != null and messageCode != &quot;&quot; '&gt;
+			 MESSAGE_CODE,
+		&lt;/if&gt;
+	 &lt;if test='messageContent != null and messageContent != &quot;&quot; '&gt;
+			 MESSAGE_CONTENT,
+	 &lt;/if&gt;
+	&lt;/trim&gt;
+
+	&lt;trim prefix=&quot;values (&quot; suffix=&quot;)&quot; suffixOverrides=&quot;,&quot; &gt;
+		#{id, jdbcType=VARCHAR},
+		#{memberId, jdbcType=VARCHAR},
+		&lt;if test='messageClassify != null and messageClassify != &quot;&quot; '&gt;
+			#{messageClassify, jdbcType=VARCHAR},
+		&lt;/if&gt;
+		&lt;if test='messageCode != null and messageCode != &quot;&quot; '&gt;
+			#{messageCode, jdbcType=VARCHAR},
+		&lt;/if&gt;
+		&lt;if test='messageContent != null and messageContent != &quot;&quot; '&gt;
+			#{messageContent, jdbcType=VARCHAR},
+		&lt;/if&gt;
+	&lt;/trim&gt;  
+&lt;/insert&gt;
 trim标签的属性
-<p>prefix：前缀覆盖并增加其内容。也就是给中的sql语句加上前缀；
+
+prefix：前缀覆盖并增加其内容。也就是给中的sql语句加上前缀；
 suffix：后缀覆盖并增加其内容。给包裹的sql语句加上后缀；
 prefixOverrides：前缀判断的条件。取消指定的前缀，如where；
 suffixOverrides：后缀判断的条件。取消指定的后缀，如and | or.，逗号等。
-``</p>
+</code></pre>
 ]]></content>
     </entry>
     <entry>
