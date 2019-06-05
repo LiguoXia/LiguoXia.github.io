@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://liguoxia.github.io//favicon.ico?v=1559702765566">
+<link rel="shortcut icon" href="https://liguoxia.github.io//favicon.ico?v=1559702847617">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://liguoxia.github.io//styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://liguoxia.github.io/">
-        <img src="https://liguoxia.github.io//images/avatar.png?v=1559702765566" class="site-logo">
+        <img src="https://liguoxia.github.io//images/avatar.png?v=1559702847617" class="site-logo">
         <h1 class="site-title">夏利国</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -142,7 +142,7 @@ String</p>
 		&lt;/where&gt;
 &lt;/select&gt;
 </code></pre>
-<pre><code>&lt;!-- SEPA批量付款重复笔数 --&gt;
+<pre><code class="language-sql">&lt;!-- SEPA批量付款重复笔数 --&gt;
     &lt;select id=&quot;repeatCount&quot; parameterType=&quot;Map&quot; resultType=&quot;int&quot;&gt;
         SELECT COUNT(1) AS REPEATCOUNT FROM  B_TS_BATCHPAY T1
         WHERE
@@ -158,13 +158,13 @@ String</p>
     &lt;/select&gt;
 </code></pre>
 <h3 id="delete">delete</h3>
-<pre><code>&lt;!-- 根据流水号和序号删除 --&gt;
+<pre><code class="language-sql">&lt;!-- 根据流水号和序号删除 --&gt;
 &lt;delete id=&quot;removeSepaInfo&quot; parameterType=&quot;Map&quot;&gt;
 	DELETE FROM B_TS_BATCHPAY A WHERE A.TRANNO =#{TRANNO}
 &lt;/delete&gt;
 </code></pre>
 <h3 id="update">update</h3>
-<pre><code>&lt;!-- SEPA经办提交复核，修改支付表信息 --&gt;
+<pre><code class="language-sql">&lt;!-- SEPA经办提交复核，修改支付表信息 --&gt;
 &lt;update id=&quot;updateSepaPay&quot; parameterType=&quot;Map&quot;&gt;
 		UPDATE
 		B_TS_BATCHPAY
@@ -204,12 +204,12 @@ String</p>
 </code></pre>
 <h3 id="insert">insert</h3>
 <h4 id="直接插入">直接插入</h4>
-<pre><code>&lt;insert id=&quot;insertMessage&quot; parameterType=&quot;Map&quot;&gt;
+<pre><code class="language-sql">&lt;insert id=&quot;insertMessage&quot; parameterType=&quot;Map&quot;&gt;
 	INSERT INTO TSTUDENT(NAME, AGE) VALUES(#{NAME}, #{AGE})
 &lt;/insert&gt;
 </code></pre>
 <h4 id="动态插入">动态插入</h4>
-<pre><code>&lt;insert id=&quot;insertMessage&quot; parameterType=&quot;com.sf.ccsp.member.client.request.MessageReq&quot;&gt;
+<pre><code class="language-sql">&lt;insert id=&quot;insertMessage&quot; parameterType=&quot;com.sf.ccsp.member.client.request.MessageReq&quot;&gt;
  insert into cx_customer_message
 	&lt;trim prefix=&quot;(&quot; suffix=&quot;)&quot; suffixOverrides=&quot;,&quot; &gt;
 		ID,MEMBERID,
@@ -238,8 +238,8 @@ String</p>
 		&lt;/if&gt;
 	&lt;/trim&gt;  
 &lt;/insert&gt;
-trim标签的属性
 
+trim标签的属性
 prefix：前缀覆盖并增加其内容。也就是给中的sql语句加上前缀；
 suffix：后缀覆盖并增加其内容。给包裹的sql语句加上后缀；
 prefixOverrides：前缀判断的条件。取消指定的前缀，如where；
